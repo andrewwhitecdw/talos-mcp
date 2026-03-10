@@ -1,47 +1,265 @@
 {
-  "command": "show",
-  "query": "finding",
-  "status_filter": "open",
-  "total": 0,
-  "findings": [],
+  "command": "next",
+  "items": [
+    {
+      "id": "auto/initial-review",
+      "kind": "cluster",
+      "action_type": "manual_fix",
+      "summary": "Initial review of 20 unscored subjective dimensions",
+      "member_count": 20,
+      "members": [
+        {
+          "id": "subjective::abstraction_fitness",
+          "kind": "subjective_dimension",
+          "confidence": "medium",
+          "detector": "subjective_assessment",
+          "file": ".",
+          "summary": "Subjective dimension below target: Abstraction fit (0.0%)",
+          "status": "open",
+          "primary_command": "desloppify review --prepare --dimensions abstraction_fitness"
+        },
+        {
+          "id": "subjective::ai_generated_debt",
+          "kind": "subjective_dimension",
+          "confidence": "medium",
+          "detector": "subjective_assessment",
+          "file": ".",
+          "summary": "Subjective dimension below target: AI generated debt (0.0%)",
+          "status": "open",
+          "primary_command": "desloppify review --prepare --dimensions ai_generated_debt"
+        },
+        {
+          "id": "subjective::api_surface_coherence",
+          "kind": "subjective_dimension",
+          "confidence": "medium",
+          "detector": "subjective_assessment",
+          "file": ".",
+          "summary": "Subjective dimension below target: API coherence (0.0%)",
+          "status": "open",
+          "primary_command": "desloppify review --prepare --dimensions api_surface_coherence"
+        },
+        {
+          "id": "subjective::authorization_consistency",
+          "kind": "subjective_dimension",
+          "confidence": "medium",
+          "detector": "subjective_assessment",
+          "file": ".",
+          "summary": "Subjective dimension below target: Auth consistency (0.0%)",
+          "status": "open",
+          "primary_command": "desloppify review --prepare --dimensions authorization_consistency"
+        },
+        {
+          "id": "subjective::contract_coherence",
+          "kind": "subjective_dimension",
+          "confidence": "medium",
+          "detector": "subjective_assessment",
+          "file": ".",
+          "summary": "Subjective dimension below target: Contracts (0.0%)",
+          "status": "open",
+          "primary_command": "desloppify review --prepare --dimensions contract_coherence"
+        },
+        {
+          "id": "subjective::convention_outlier",
+          "kind": "subjective_dimension",
+          "confidence": "medium",
+          "detector": "subjective_assessment",
+          "file": ".",
+          "summary": "Subjective dimension below target: Convention drift (0.0%)",
+          "status": "open",
+          "primary_command": "desloppify review --prepare --dimensions convention_outlier"
+        },
+        {
+          "id": "subjective::cross_module_architecture",
+          "kind": "subjective_dimension",
+          "confidence": "medium",
+          "detector": "subjective_assessment",
+          "file": ".",
+          "summary": "Subjective dimension below target: Cross-module arch (0.0%)",
+          "status": "open",
+          "primary_command": "desloppify review --prepare --dimensions cross_module_architecture"
+        },
+        {
+          "id": "subjective::dependency_health",
+          "kind": "subjective_dimension",
+          "confidence": "medium",
+          "detector": "subjective_assessment",
+          "file": ".",
+          "summary": "Subjective dimension below target: Dep health (0.0%)",
+          "status": "open",
+          "primary_command": "desloppify review --prepare --dimensions dependency_health"
+        },
+        {
+          "id": "subjective::design_coherence",
+          "kind": "subjective_dimension",
+          "confidence": "medium",
+          "detector": "subjective_assessment",
+          "file": ".",
+          "summary": "Subjective dimension below target: Design coherence (0.0%)",
+          "status": "open",
+          "primary_command": "desloppify review --prepare --dimensions design_coherence"
+        },
+        {
+          "id": "subjective::error_consistency",
+          "kind": "subjective_dimension",
+          "confidence": "medium",
+          "detector": "subjective_assessment",
+          "file": ".",
+          "summary": "Subjective dimension below target: Error consistency (0.0%)",
+          "status": "open",
+          "primary_command": "desloppify review --prepare --dimensions error_consistency"
+        },
+        {
+          "id": "subjective::high_level_elegance",
+          "kind": "subjective_dimension",
+          "confidence": "medium",
+          "detector": "subjective_assessment",
+          "file": ".",
+          "summary": "Subjective dimension below target: High elegance (0.0%)",
+          "status": "open",
+          "primary_command": "desloppify review --prepare --dimensions high_level_elegance"
+        },
+        {
+          "id": "subjective::incomplete_migration",
+          "kind": "subjective_dimension",
+          "confidence": "medium",
+          "detector": "subjective_assessment",
+          "file": ".",
+          "summary": "Subjective dimension below target: Stale migration (0.0%)",
+          "status": "open",
+          "primary_command": "desloppify review --prepare --dimensions incomplete_migration"
+        },
+        {
+          "id": "subjective::initialization_coupling",
+          "kind": "subjective_dimension",
+          "confidence": "medium",
+          "detector": "subjective_assessment",
+          "file": ".",
+          "summary": "Subjective dimension below target: Init coupling (0.0%)",
+          "status": "open",
+          "primary_command": "desloppify review --prepare --dimensions initialization_coupling"
+        },
+        {
+          "id": "subjective::logic_clarity",
+          "kind": "subjective_dimension",
+          "confidence": "medium",
+          "detector": "subjective_assessment",
+          "file": ".",
+          "summary": "Subjective dimension below target: Logic clarity (0.0%)",
+          "status": "open",
+          "primary_command": "desloppify review --prepare --dimensions logic_clarity"
+        },
+        {
+          "id": "subjective::low_level_elegance",
+          "kind": "subjective_dimension",
+          "confidence": "medium",
+          "detector": "subjective_assessment",
+          "file": ".",
+          "summary": "Subjective dimension below target: Low elegance (0.0%)",
+          "status": "open",
+          "primary_command": "desloppify review --prepare --dimensions low_level_elegance"
+        },
+        {
+          "id": "subjective::mid_level_elegance",
+          "kind": "subjective_dimension",
+          "confidence": "medium",
+          "detector": "subjective_assessment",
+          "file": ".",
+          "summary": "Subjective dimension below target: Mid elegance (0.0%)",
+          "status": "open",
+          "primary_command": "desloppify review --prepare --dimensions mid_level_elegance"
+        },
+        {
+          "id": "subjective::naming_quality",
+          "kind": "subjective_dimension",
+          "confidence": "medium",
+          "detector": "subjective_assessment",
+          "file": ".",
+          "summary": "Subjective dimension below target: Naming quality (0.0%)",
+          "status": "open",
+          "primary_command": "desloppify review --prepare --dimensions naming_quality"
+        },
+        {
+          "id": "subjective::package_organization",
+          "kind": "subjective_dimension",
+          "confidence": "medium",
+          "detector": "subjective_assessment",
+          "file": ".",
+          "summary": "Subjective dimension below target: Structure nav (0.0%)",
+          "status": "open",
+          "primary_command": "desloppify review --prepare --dimensions package_organization"
+        },
+        {
+          "id": "subjective::test_strategy",
+          "kind": "subjective_dimension",
+          "confidence": "medium",
+          "detector": "subjective_assessment",
+          "file": ".",
+          "summary": "Subjective dimension below target: Test strategy (0.0%)",
+          "status": "open",
+          "primary_command": "desloppify review --prepare --dimensions test_strategy"
+        },
+        {
+          "id": "subjective::type_safety",
+          "kind": "subjective_dimension",
+          "confidence": "medium",
+          "detector": "subjective_assessment",
+          "file": ".",
+          "summary": "Subjective dimension below target: Type safety (0.0%)",
+          "status": "open",
+          "primary_command": "desloppify review --prepare --dimensions type_safety"
+        }
+      ],
+      "cluster_name": "auto/initial-review",
+      "cluster_auto": true,
+      "detector": "subjective_assessment",
+      "primary_command": "desloppify review --prepare --dimensions abstraction_fitness,ai_generated_debt,api_surface_coherence,authorization_consistency,contract_coherence,convention_outlier,cross_module_architecture,dependency_health,design_coherence,error_consistency,high_level_elegance,incomplete_migration,initialization_coupling,logic_clarity,low_level_elegance,mid_level_elegance,naming_quality,package_organization,test_strategy,type_safety"
+    }
+  ],
+  "queue": {
+    "total": 1
+  },
   "narrative": {
-    "phase": "stagnation",
-    "headline": "All T1 and T2 items cleared!",
+    "phase": "middle_grind",
+    "headline": "26 issues open. Abstraction fit (0.0%) needs attention \u2014 run `desloppify next` to start.",
     "dimensions": {
       "lowest_dimensions": [
         {
-          "name": "Test health",
+          "name": "Abstraction fit",
           "strict": 0.0,
-          "issues": 0,
-          "impact": 0.0
-        },
-        {
-          "name": "Naming quality",
-          "strict": 0.0,
-          "issues": 0,
+          "failing": 0,
           "impact": 0.0,
           "subjective": true,
           "impact_description": "re-review to improve"
         },
         {
-          "name": "Logic clarity",
+          "name": "AI generated debt",
           "strict": 0.0,
-          "issues": 0,
+          "failing": 0,
+          "impact": 0.0,
+          "subjective": true,
+          "impact_description": "re-review to improve"
+        },
+        {
+          "name": "API coherence",
+          "strict": 0.0,
+          "failing": 0,
           "impact": 0.0,
           "subjective": true,
           "impact_description": "re-review to improve"
         }
       ],
-      "biggest_gap_dimensions": [
-        {
-          "name": "Test health",
-          "lenient": 100.0,
-          "strict": 0.0,
-          "gap": 100.0,
-          "wontfix_count": 5
-        }
-      ],
+      "biggest_gap_dimensions": [],
       "stagnant_dimensions": [
+        {
+          "name": "Code quality",
+          "strict": 50.0,
+          "stuck_scans": 5
+        },
+        {
+          "name": "Security",
+          "strict": 100.0,
+          "stuck_scans": 5
+        },
         {
           "name": "File health",
           "strict": 72.0,
@@ -53,87 +271,12 @@
           "stuck_scans": 5
         },
         {
-          "name": "Test health",
-          "strict": 0.0,
-          "stuck_scans": 5
-        },
-        {
-          "name": "Security",
-          "strict": 100.0,
-          "stuck_scans": 5
-        },
-        {
-          "name": "Naming quality",
-          "strict": 0.0,
-          "stuck_scans": 5
-        },
-        {
-          "name": "Logic clarity",
-          "strict": 0.0,
-          "stuck_scans": 5
-        },
-        {
-          "name": "Type safety",
-          "strict": 0.0,
-          "stuck_scans": 5
-        },
-        {
-          "name": "Contracts",
-          "strict": 0.0,
-          "stuck_scans": 5
-        },
-        {
-          "name": "Error consistency",
-          "strict": 0.0,
-          "stuck_scans": 5
-        },
-        {
           "name": "Abstraction fit",
           "strict": 0.0,
           "stuck_scans": 5
         },
         {
           "name": "AI generated debt",
-          "strict": 0.0,
-          "stuck_scans": 5
-        },
-        {
-          "name": "High elegance",
-          "strict": 0.0,
-          "stuck_scans": 5
-        },
-        {
-          "name": "Mid elegance",
-          "strict": 0.0,
-          "stuck_scans": 5
-        },
-        {
-          "name": "Low elegance",
-          "strict": 0.0,
-          "stuck_scans": 5
-        },
-        {
-          "name": "Cross-module arch",
-          "strict": 0.0,
-          "stuck_scans": 5
-        },
-        {
-          "name": "Init coupling",
-          "strict": 0.0,
-          "stuck_scans": 5
-        },
-        {
-          "name": "Convention drift",
-          "strict": 0.0,
-          "stuck_scans": 5
-        },
-        {
-          "name": "Dep health",
-          "strict": 0.0,
-          "stuck_scans": 5
-        },
-        {
-          "name": "Test strategy",
           "strict": 0.0,
           "stuck_scans": 5
         },
@@ -148,7 +291,67 @@
           "stuck_scans": 5
         },
         {
+          "name": "Contracts",
+          "strict": 0.0,
+          "stuck_scans": 5
+        },
+        {
+          "name": "Convention drift",
+          "strict": 0.0,
+          "stuck_scans": 5
+        },
+        {
+          "name": "Cross-module arch",
+          "strict": 0.0,
+          "stuck_scans": 5
+        },
+        {
+          "name": "Dep health",
+          "strict": 0.0,
+          "stuck_scans": 5
+        },
+        {
+          "name": "Design coherence",
+          "strict": 0.0,
+          "stuck_scans": 5
+        },
+        {
+          "name": "Error consistency",
+          "strict": 0.0,
+          "stuck_scans": 5
+        },
+        {
+          "name": "High elegance",
+          "strict": 0.0,
+          "stuck_scans": 5
+        },
+        {
           "name": "Stale migration",
+          "strict": 0.0,
+          "stuck_scans": 5
+        },
+        {
+          "name": "Init coupling",
+          "strict": 0.0,
+          "stuck_scans": 5
+        },
+        {
+          "name": "Logic clarity",
+          "strict": 0.0,
+          "stuck_scans": 5
+        },
+        {
+          "name": "Low elegance",
+          "strict": 0.0,
+          "stuck_scans": 5
+        },
+        {
+          "name": "Mid elegance",
+          "strict": 0.0,
+          "stuck_scans": 5
+        },
+        {
+          "name": "Naming quality",
           "strict": 0.0,
           "stuck_scans": 5
         },
@@ -158,7 +361,12 @@
           "stuck_scans": 5
         },
         {
-          "name": "Design coherence",
+          "name": "Test strategy",
+          "strict": 0.0,
+          "stuck_scans": 5
+        },
+        {
+          "name": "Type safety",
           "strict": 0.0,
           "stuck_scans": 5
         }
@@ -166,103 +374,129 @@
     },
     "actions": [
       {
+        "type": "reorganize",
+        "detector": "orphaned",
+        "count": 5,
+        "description": "5 orphaned issues in 1 cluster(s) \u2014 run `desloppify next`",
+        "command": "desloppify next",
+        "impact": 0.0,
+        "dimension": "Code quality",
+        "priority": 1,
+        "clusters": [
+          "auto/orphaned"
+        ],
+        "cluster_count": 1,
+        "lane": "restructure"
+      },
+      {
         "type": "refactor",
         "detector": "structural",
         "count": 2,
-        "description": "2 structural findings \u2014 decompose large files \u2014 extract logic into focused modules",
+        "description": "2 structural issues \u2014 review large files \u2014 split only when responsibilities are clearly separable",
         "command": "desloppify show structural --status open",
         "impact": 0.0,
         "dimension": "File health",
-        "priority": 1,
+        "priority": 2,
         "lane": "refactor_0"
+      },
+      {
+        "type": "refactor",
+        "detector": "test_coverage",
+        "count": 5,
+        "description": "5 test_coverage issues in 1 cluster(s) \u2014 run `desloppify next`",
+        "command": "desloppify next",
+        "impact": 0.0,
+        "dimension": "Test health",
+        "priority": 3,
+        "clusters": [
+          "auto/test_coverage"
+        ],
+        "cluster_count": 1,
+        "lane": "test_coverage"
       },
       {
         "type": "manual_fix",
         "detector": "unused",
-        "count": 1,
-        "description": "1 unused findings \u2014 inspect with `desloppify next` and fix manually",
-        "command": "desloppify show unused --status open",
+        "count": 13,
+        "description": "13 unused issues in 1 cluster(s) \u2014 run `desloppify next`",
+        "command": "desloppify next",
         "impact": 0.0,
         "dimension": "Code quality",
-        "priority": 2,
-        "lane": "refactor_1"
+        "priority": 4,
+        "clusters": [
+          "auto/unused"
+        ],
+        "cluster_count": 1,
+        "lane": "refactor_0"
       },
       {
         "type": "manual_fix",
         "detector": "cargo_error",
         "count": 1,
-        "description": "1 cargo_error findings \u2014 review and fix cargo check findings",
+        "description": "1 cargo_error issues \u2014 review and fix cargo check issues",
         "command": "desloppify show cargo_error --status open",
         "impact": 0.0,
         "dimension": "Code quality",
-        "priority": 3,
-        "lane": "refactor_2"
-      },
-      {
-        "type": "debt_review",
-        "detector": null,
-        "description": "4.2 pts of wontfix debt \u2014 review stale decisions",
-        "command": "desloppify show --status wontfix",
-        "gap": 4.2,
-        "priority": 4,
-        "lane": "debt_review"
+        "priority": 5,
+        "lane": "refactor_1"
       }
     ],
     "strategy": {
       "fixer_leverage": {
         "auto_fixable_count": 0,
-        "total_count": 4,
+        "total_count": 26,
         "coverage": 0.0,
         "impact_ratio": 0.0,
         "recommendation": "none"
       },
       "lanes": {
-        "refactor_0": {
+        "restructure": {
           "actions": [
             1
           ],
-          "file_count": 2,
+          "file_count": 5,
+          "total_impact": 0.0,
+          "automation": "manual",
+          "run_first": false
+        },
+        "refactor_0": {
+          "actions": [
+            2,
+            4
+          ],
+          "file_count": 6,
           "total_impact": 0.0,
           "automation": "manual",
           "run_first": false
         },
         "refactor_1": {
           "actions": [
-            2
+            5
           ],
           "file_count": 1,
           "total_impact": 0.0,
           "automation": "manual",
           "run_first": false
         },
-        "refactor_2": {
+        "test_coverage": {
           "actions": [
             3
           ],
-          "file_count": 1,
-          "total_impact": 0.0,
-          "automation": "manual",
-          "run_first": false
-        },
-        "debt_review": {
-          "actions": [
-            4
-          ],
-          "file_count": 0,
+          "file_count": 5,
           "total_impact": 0.0,
           "automation": "manual",
           "run_first": false
         }
       },
-      "can_parallelize": false,
-      "hint": "Try a different dimension to break the plateau."
+      "can_parallelize": true,
+      "hint": "4 independent workstreams, safe to parallelize. Rescan after each phase to verify."
     },
     "tools": {
       "fixers": [],
       "move": {
         "available": true,
-        "relevant": false,
-        "reason": null,
+        "relevant": true,
+        "reason": "5 orphaned files",
         "usage": "desloppify move <source> <dest> [--dry-run]"
       },
       "plan": {
@@ -277,49 +511,35 @@
       }
     },
     "debt": {
-      "overall_gap": 4.2,
-      "wontfix_count": 5,
-      "worst_dimension": "Test health",
-      "worst_gap": 100.0,
-      "trend": "growing"
+      "overall_gap": -0.2,
+      "wontfix_count": 0,
+      "worst_dimension": null,
+      "worst_gap": 0.0,
+      "trend": "shrinking"
     },
-    "milestone": "All T1 and T2 items cleared!",
+    "milestone": null,
     "primary_action": {
-      "command": "desloppify show structural --status open",
-      "description": "2 structural findings \u2014 decompose large files \u2014 extract logic into focused modules"
+      "command": "desloppify next",
+      "description": "5 orphaned issues in 1 cluster(s) \u2014 run `desloppify next`"
     },
-    "why_now": "Try a different dimension to break the plateau.",
+    "why_now": "4 independent workstreams, safe to parallelize. Rescan after each phase to verify.",
     "verification_step": {
       "command": "desloppify scan",
       "reason": "revalidate after changes"
     },
-    "risk_flags": [
-      {
-        "type": "wontfix_gap",
-        "severity": "medium",
-        "message": "Strict/lenient gap is 4.2 pts with 5 wontfix findings"
-      }
-    ],
+    "risk_flags": [],
     "strict_target": {
       "target": 95.0,
-      "current": 24.5,
-      "gap": 70.5,
+      "current": 25.6,
+      "gap": 69.4,
       "state": "below",
       "warning": null
     },
-    "reminders": [
-      {
-        "type": "wontfix_growing",
-        "message": "Wontfix debt is growing. Review stale decisions: `desloppify show --status wontfix`.",
-        "command": "desloppify show --status wontfix",
-        "priority": 2,
-        "severity": "medium"
-      }
-    ],
+    "reminders": [],
     "reminder_history": {
       "auto_fixers_available": 3,
       "dry_run_first": 3,
-      "report_scores": 8,
+      "report_scores": 13,
       "feedback_nudge": 3,
       "fp_calibration_orphaned_production": 3,
       "fp_calibration_unused_production": 3,
@@ -328,6 +548,91 @@
       "wontfix_growing": 3
     }
   },
+  "agent_notes": [
+    "Do NOT use `desloppify plan skip` unless the user explicitly asks you to skip an item.",
+    "If you cannot fix an item, report it and move to the next one.",
+    "For cluster items: if the autofix_hint finds 0 results, drill into individual issues with the primary_command."
+  ],
+  "plan": {
+    "active": true,
+    "focus": null,
+    "clusters": [
+      {
+        "name": "auto/unused",
+        "description": "Remove 13 unused issues",
+        "item_count": 13
+      },
+      {
+        "name": "auto/orphaned",
+        "description": "Fix 5 orphaned issues",
+        "item_count": 5
+      },
+      {
+        "name": "auto/initial-review",
+        "description": "Initial review of 20 unscored subjective dimensions",
+        "item_count": 20
+      },
+      {
+        "name": "auto/test_coverage",
+        "description": "Fix 5 test coverage issues",
+        "item_count": 5
+      }
+    ],
+    "total_ordered": 20,
+    "total_skipped": 0,
+    "plan_overrides_narrative": true
+  },
+  "overall_score": 25.0,
+  "objective_score": 62.4,
+  "strict_score": 25.6,
+  "scorecard_dimensions": [
+    {
+      "name": "File health",
+      "score": 72.0,
+      "strict": 72.0,
+      "checks": 5,
+      "failing": 2,
+      "tier": 3,
+      "subjective": false
+    },
+    {
+      "name": "Code quality",
+      "score": 50.0,
+      "strict": 50.0,
+      "checks": 7,
+      "failing": 5,
+      "tier": 3,
+      "subjective": false
+    },
+    {
+      "name": "Duplication",
+      "score": 100.0,
+      "strict": 100.0,
+      "checks": 138,
+      "failing": 0,
+      "tier": 3,
+      "subjective": false
+    },
+    {
+      "name": "Security",
+      "score": 100.0,
+      "strict": 100.0,
+      "checks": 10,
+      "failing": 0,
+      "tier": 4,
+      "subjective": false
+    },
+    {
+      "name": "Test health",
+      "score": 0.5,
+      "strict": 5.0,
+      "checks": 90,
+      "failing": 5,
+      "tier": 4,
+      "subjective": false
+    }
+  ],
+  "subjective_measures": [],
   "config": {
     "target_strict_score": 95,
     "review_max_age_days": 30,
@@ -335,15 +640,24 @@
     "holistic_max_age_days": 30,
     "generate_scorecard": true,
     "badge_path": "scorecard.png",
-    "exclude": [],
+    "exclude": [
+      ".git"
+    ],
     "ignore": [],
     "ignore_metadata": {},
     "zone_overrides": {},
     "review_dimensions": [],
     "large_files_threshold": 0,
     "props_threshold": 0,
-    "finding_noise_budget": 10,
-    "finding_noise_global_budget": 0,
-    "languages": {}
+    "issue_noise_budget": 10,
+    "issue_noise_global_budget": 0,
+    "execution_log_max_entries": 10000,
+    "needs_rescan": false,
+    "languages": {},
+    "commit_tracking_enabled": true,
+    "commit_pr": 0,
+    "commit_default_branch": "",
+    "commit_message_template": "desloppify: {status} {count} issue(s) \u2014 {summary}",
+    "trust_plugins": false
   }
 }

@@ -708,3 +708,187 @@ fn handle_defrag_etcd(args: &serde_json::Value) -> Result<String> {
     cmd_args.extend(["etcd".to_string(), "defrag".to_string()]);
     run_talosctl(cmd_args)
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use serde_json::json;
+
+    #[test]
+    fn test_get_required_string_success() {
+        let args = json!({"node": "10.0.0.1", "service": "kubelet"});
+        assert_eq!(get_required_string(&args, "node").unwrap(), "10.0.0.1");
+        assert_eq!(get_required_string(&args, "service").unwrap(), "kubelet");
+    }
+
+    #[test]
+    fn test_get_required_string_missing_key() {
+        let args = json!({"node": "10.0.0.1"});
+        assert!(get_required_string(&args, "nonexistent").is_err());
+    }
+
+    #[test]
+    fn test_get_required_string_not_a_string() {
+        let args = json!({"node": 12345});
+        assert!(get_required_string(&args, "node").is_err());
+    }
+
+    #[test]
+    fn test_get_optional_string_present() {
+        let args = json!({"node": "10.0.0.1", "context": "production"});
+        assert_eq!(
+            get_optional_string(&args, "node"),
+            Some("10.0.0.1".to_string())
+        );
+        assert_eq!(
+            get_optional_string(&args, "context"),
+            Some("production".to_string())
+        );
+    }
+
+    #[test]
+    fn test_get_optional_string_missing() {
+        let args = json!({"node": "10.0.0.1"});
+        assert_eq!(get_optional_string(&args, "context"), None);
+    }
+
+    #[test]
+    fn test_get_optional_string_not_a_string() {
+        let args = json!({"context": 12345});
+        assert_eq!(get_optional_string(&args, "context"), None);
+    }
+
+    #[test]
+    fn test_get_optional_bool_present_true() {
+        let args = json!({"kubernetes": true});
+        assert_eq!(get_optional_bool(&args, "kubernetes"), true);
+    }
+
+    #[test]
+    fn test_get_optional_bool_present_false() {
+        let args = json!({"kubernetes": false});
+        assert_eq!(get_optional_bool(&args, "kubernetes"), false);
+    }
+
+    #[test]
+    fn test_get_optional_bool_missing() {
+        let args = json!({"node": "10.0.0.1"});
+        assert_eq!(get_optional_bool(&args, "kubernetes"), false);
+    }
+
+    #[test]
+    fn test_get_optional_bool_not_a_bool() {
+        let args = json!({"kubernetes": "yes"});
+        assert_eq!(get_optional_bool(&args, "kubernetes"), false);
+    }
+
+    #[test]
+    fn test_get_optional_int_present() {
+        let args = json!({"tail": 100});
+        assert_eq!(get_optional_int(&args, "tail"), Some(100));
+    }
+
+    #[test]
+    fn test_get_optional_int_missing() {
+        let args = json!({"node": "10.0.0.1"});
+        assert_eq!(get_optional_int(&args, "tail"), None);
+    }
+
+    #[test]
+    fn test_get_optional_int_not_an_int() {
+        let args = json!({"tail": "100"});
+        assert_eq!(get_optional_int(&args, "tail"), None);
+    }
+
+    #[test]
+    fn test_get_optional_int_float_returns_none() {
+        let args = json!({"tail": 100.5});
+        assert_eq!(get_optional_int(&args, "tail"), None);
+    }
+
+    #[test]
+    fn test_add_context_flag_with_context() {
+        let args = json!({"context": "production"});
+        let mut cmd_args = vec!["version".to_string()];
+        add_context_flag(&args, &mut cmd_args);
+        assert_eq!(cmd_args, vec!["version", "--context", "production"]);
+    }
+
+    #[test]
+    fn test_add_context_flag_without_context() {
+        let args = json!({});
+        let mut cmd_args = vec!["version".to_string()];
+        add_context_flag(&args, &mut cmd_args);
+        assert_eq!(cmd_args, vec!["version"]);
+    }
+
+    #[test]
+    fn test_add_context_flag_empty_context() {
+        let args = json!({"context": ""});
+        let mut cmd_args = vec!["version".to_string()];
+        add_context_flag(&args, &mut cmd_args);
+        assert_eq!(cmd_args, vec!["version", "--context", ""]);
+    }
+
+    #[test]
+    fn test_add_context_to_args_with_context() {
+        let context = Some("production".to_string());
+        let mut cmd_args = vec!["--nodes".to_string(), "10.0.0.1".to_string()];
+        add_context_to_args(&context, &mut cmd_args);
+        assert_eq!(
+            cmd_args,
+            vec!["--nodes", "10.0.0.1", "--context", "production"]
+        );
+    }
+
+    #[test]
+    fn test_add_context_to_args_without_context() {
+        let context = None;
+        let mut cmd_args = vec!["--nodes".to_string(), "10.0.0.1".to_string()];
+        add_context_to_args(&context, &mut cmd_args);
+        assert_eq!(cmd_args, vec!["--nodes", "10.0.0.1"]);
+    }
+
+    #[test]
+    fn test_parameter_extraction_from_nested_args() {
+        let params = json!({
+            "name": "get_logs",
+            "arguments": {
+                "node": "10.0.0.1",
+                "service": "kubelet",
+                "tail": 50
+            }
+        });
+
+        let args = params.get("arguments").unwrap();
+        assert_eq!(get_required_string(args, "node").unwrap(), "10.0.0.1");
+        assert_eq!(get_required_string(args, "service").unwrap(), "kubelet");
+        assert_eq!(get_optional_int(args, "tail"), Some(50));
+    }
+
+    #[test]
+    fn test_multiple_optional_parameters() {
+        let args = json!({
+            "node": "10.0.0.1",
+            "context": "staging",
+            "kubernetes": true,
+            "tail": 100
+        });
+
+        assert_eq!(
+            get_optional_string(&args, "context"),
+            Some("staging".to_string())
+        );
+        assert_eq!(get_optional_bool(&args, "kubernetes"), true);
+        assert_eq!(get_optional_int(&args, "tail"), Some(100));
+    }
+
+    #[test]
+    fn test_empty_args() {
+        let args = json!({});
+        assert!(get_required_string(&args, "node").is_err());
+        assert_eq!(get_optional_string(&args, "context"), None);
+        assert_eq!(get_optional_bool(&args, "kubernetes"), false);
+        assert_eq!(get_optional_int(&args, "tail"), None);
+    }
+}

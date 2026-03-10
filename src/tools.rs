@@ -489,7 +489,7 @@ fn restart_tool() -> serde_json::Value {
 fn get_logs_tool() -> serde_json::Value {
     json!({
         "name": "get_logs",
-        "description": "Retrieve service logs from a Talos node with tail support",
+        "description": "Get logs from a Talos node or service",
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -499,23 +499,19 @@ fn get_logs_tool() -> serde_json::Value {
                 },
                 "service": {
                     "type": "string",
-                    "description": "Name of the service to get logs for"
+                    "description": "Service name (e.g., 'kubelet', 'containerd') or 'k8s' for Kubernetes logs"
                 },
                 "tail": {
                     "type": "integer",
-                    "description": "Number of lines to tail from the end"
+                    "description": "Number of lines to show from the end of the logs (default: all lines)"
                 },
                 "kubernetes": {
                     "type": "boolean",
-                    "description": "Get logs from Kubernetes pods"
+                    "description": "Show Kubernetes logs (shortcut for service='k8s')"
                 },
                 "namespace": {
                     "type": "string",
-                    "description": "Kubernetes namespace"
-                },
-                "pod": {
-                    "type": "string",
-                    "description": "Pod name for Kubernetes logs"
+                    "description": "Kubernetes namespace (for Kubernetes logs)"
                 }
             },
             "required": ["node", "service"]
@@ -574,8 +570,8 @@ fn disks_tool() -> serde_json::Value {
 
 fn list_disks_tool() -> serde_json::Value {
     json!({
-        "name": "wipe-disk",
-        "description": "Wipe a disk on a Talos node. WARNING: This is a destructive operation.",
+        "name": "list_disks",
+        "description": "List disks on a Talos node",
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -945,13 +941,17 @@ fn validate_config_tool() -> serde_json::Value {
 fn get_etcd_status_tool() -> serde_json::Value {
     json!({
         "name": "get_etcd_status",
-        "description": "Get etcd cluster status from a Talos node",
+        "description": "Get etcd status for a Talos node",
         "inputSchema": {
             "type": "object",
             "properties": {
                 "node": {
                     "type": "string",
                     "description": "The IP address or hostname of the Talos node"
+                },
+                "context": {
+                    "type": "string",
+                    "description": "Kubernetes context to use"
                 }
             },
             "required": ["node"]
@@ -962,13 +962,17 @@ fn get_etcd_status_tool() -> serde_json::Value {
 fn get_etcd_members_tool() -> serde_json::Value {
     json!({
         "name": "get_etcd_members",
-        "description": "Get etcd member information from a Talos cluster",
+        "description": "Get etcd members for a Talos node",
         "inputSchema": {
             "type": "object",
             "properties": {
                 "node": {
                     "type": "string",
                     "description": "The IP address or hostname of the Talos node"
+                },
+                "context": {
+                    "type": "string",
+                    "description": "Kubernetes context to use"
                 }
             },
             "required": ["node"]
@@ -979,13 +983,17 @@ fn get_etcd_members_tool() -> serde_json::Value {
 fn bootstrap_etcd_tool() -> serde_json::Value {
     json!({
         "name": "bootstrap_etcd",
-        "description": "Bootstrap etcd on a Talos control plane node",
+        "description": "Bootstrap etcd on a Talos node",
         "inputSchema": {
             "type": "object",
             "properties": {
                 "node": {
                     "type": "string",
-                    "description": "The IP address or hostname of the Talos control plane node"
+                    "description": "The IP address or hostname of the Talos node"
+                },
+                "context": {
+                    "type": "string",
+                    "description": "Kubernetes context to use"
                 }
             },
             "required": ["node"]
@@ -996,13 +1004,17 @@ fn bootstrap_etcd_tool() -> serde_json::Value {
 fn defrag_etcd_tool() -> serde_json::Value {
     json!({
         "name": "defrag_etcd",
-        "description": "Defragment etcd database on a Talos node",
+        "description": "Defragment etcd on a Talos node",
         "inputSchema": {
             "type": "object",
             "properties": {
                 "node": {
                     "type": "string",
                     "description": "The IP address or hostname of the Talos node"
+                },
+                "context": {
+                    "type": "string",
+                    "description": "Kubernetes context to use"
                 }
             },
             "required": ["node"]
