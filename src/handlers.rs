@@ -60,6 +60,8 @@ pub fn handle_tool_call(request: &JsonRpcRequest) -> JsonRpcResponse {
         "get_etcd_members" => handle_get_etcd_members(&arguments),
         "bootstrap_etcd" => handle_bootstrap_etcd(&arguments),
         "defrag_etcd" => handle_defrag_etcd(&arguments),
+        "patch_mc" => handle_patch_mc(&arguments),
+        "get_extensions" => handle_get_extensions(&arguments),
         _ => {
             return JsonRpcResponse::error(
                 request.id.clone(),
@@ -706,6 +708,57 @@ fn handle_defrag_etcd(args: &serde_json::Value) -> Result<String> {
     let mut cmd_args = vec!["--nodes".to_string(), node];
     add_context_to_args(&context, &mut cmd_args);
     cmd_args.extend(["etcd".to_string(), "defrag".to_string()]);
+    run_talosctl(cmd_args)
+}
+
+fn handle_patch_mc(args: &serde_json::Value) -> Result<String> {
+    let node = get_required_string(args, "node")?;
+    let mut cmd_args = vec![
+        "--nodes".to_string(),
+        node,
+        "patch".to_string(),
+        "mc".to_string(),
+    ];
+
+    add_context_flag(args, &mut cmd_args);
+
+    if let Some(patch_file) = get_optional_string(args, "patch_file") {
+        cmd_args.push("--patch".to_string());
+        cmd_args.push(format!("@{}", patch_file));
+    } else if let Some(patch) = get_optional_string(args, "patch") {
+        cmd_args.push("--patch".to_string());
+        cmd_args.push(patch);
+    } else {
+        anyhow::bail!("Either 'patch' or 'patch_file' parameter is required");
+    }
+
+    if get_optional_bool(args, "on_reboot") {
+        cmd_args.push("--on-reboot".to_string());
+    }
+
+    if get_optional_bool(args, "immediate") && !get_optional_bool(args, "on_reboot") {
+        cmd_args.push("--immediate".to_string());
+    }
+
+    run_talosctl(cmd_args)
+}
+
+fn handle_get_extensions(args: &serde_json::Value) -> Result<String> {
+    let node = get_required_string(args, "node")?;
+    let mut cmd_args = vec![
+        "--nodes".to_string(),
+        node,
+        "get".to_string(),
+        "extensions".to_string(),
+    ];
+
+    add_context_flag(args, &mut cmd_args);
+
+    if let Some(output) = get_optional_string(args, "output") {
+        cmd_args.push("-o".to_string());
+        cmd_args.push(output);
+    }
+
     run_talosctl(cmd_args)
 }
 

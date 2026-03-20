@@ -1,6 +1,6 @@
 # Talos MCP Server
 
-A Model Context Protocol (MCP) server that provides comprehensive access to Talos OS cluster management capabilities. This server exposes 37 powerful tools for monitoring, managing, and interacting with Talos OS nodes through a standardized MCP interface.
+A Model Context Protocol (MCP) server that provides comprehensive access to Talos OS cluster management capabilities. This server exposes 39 powerful tools for monitoring, managing, and interacting with Talos OS nodes through a standardized MCP interface.
 
 ## Features
 
@@ -75,6 +75,8 @@ A Model Context Protocol (MCP) server that provides comprehensive access to Talo
 | | `get_etcd_members` | Member information |
 | | `bootstrap_etcd` | Cluster bootstrapping |
 | | `defrag_etcd` | Database defragmentation |
+| Machine Config | `patch_mc` | Apply machine config patches (NVIDIA GPU setup) |
+| Extensions | `get_extensions` | List installed system extensions |
 
 ## Installation
 
@@ -230,6 +232,56 @@ The installer automatically configures Cursor. Manual configuration:
   "params": {
     "node": "192.168.1.77",
     "context": "production-cluster"
+  }
+}
+```
+
+### NVIDIA GPU Setup
+
+Configure NVIDIA GPU nodes with kernel modules and sysctls:
+
+```json
+{
+  "method": "patch_mc",
+  "params": {
+    "node": "192.168.1.77",
+    "patch": "machine:\n  kernel:\n    modules:\n      - name: nvidia\n      - name: nvidia_uvm\n      - name: nvidia_drm\n      - name: nvidia_modeset\n  sysctls:\n    net.core.bpf_jit_harden: 1"
+  }
+}
+```
+
+Verify NVIDIA extensions are installed:
+
+```json
+{
+  "method": "get_extensions",
+  "params": {
+    "node": "192.168.1.77",
+    "output": "json"
+  }
+}
+```
+
+Check NVIDIA modules are loaded:
+
+```json
+{
+  "method": "read",
+  "params": {
+    "node": "192.168.1.77",
+    "path": "/proc/modules"
+  }
+}
+```
+
+Verify driver version:
+
+```json
+{
+  "method": "read",
+  "params": {
+    "node": "192.168.1.77",
+    "path": "/proc/driver/nvidia/version"
   }
 }
 ```

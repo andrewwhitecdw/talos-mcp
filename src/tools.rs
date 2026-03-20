@@ -48,6 +48,9 @@ pub fn get_all_tool_schemas() -> Vec<serde_json::Value> {
         get_etcd_members_tool(),
         bootstrap_etcd_tool(),
         defrag_etcd_tool(),
+        // NVIDIA/GPU Tools
+        patch_mc_tool(),
+        get_extensions_tool(),
     ]
 }
 
@@ -1011,6 +1014,65 @@ fn defrag_etcd_tool() -> serde_json::Value {
                 "node": {
                     "type": "string",
                     "description": "The IP address or hostname of the Talos node"
+                },
+                "context": {
+                    "type": "string",
+                    "description": "Kubernetes context to use"
+                }
+            },
+            "required": ["node"]
+        }
+    })
+}
+
+fn patch_mc_tool() -> serde_json::Value {
+    json!({
+        "name": "patch_mc",
+        "description": "Patch Talos machine configuration. Used for NVIDIA GPU setup (kernel modules, sysctls), runtime configuration, and other machine-level settings.",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "node": {
+                    "type": "string",
+                    "description": "The IP address or hostname of the Talos node"
+                },
+                "patch": {
+                    "type": "string",
+                    "description": "YAML or JSON patch to apply (inline string). For NVIDIA: machine.kernel.modules and machine.sysctls"
+                },
+                "patch_file": {
+                    "type": "string",
+                    "description": "Path to a patch file on the local system (alternative to inline patch)"
+                },
+                "on_reboot": {
+                    "type": "boolean",
+                    "description": "Apply patch on next reboot instead of immediately"
+                },
+                "immediate": {
+                    "type": "boolean",
+                    "description": "Apply patch immediately without reboot (default: true)"
+                }
+            },
+            "required": ["node"]
+        }
+    })
+}
+
+fn get_extensions_tool() -> serde_json::Value {
+    json!({
+        "name": "get_extensions",
+        "description": "List installed Talos system extensions. Use to verify NVIDIA driver extensions (nonfree-kmod-nvidia, nvidia-container-toolkit) are installed.",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "node": {
+                    "type": "string",
+                    "description": "The IP address or hostname of the Talos node"
+                },
+                "output": {
+                    "type": "string",
+                    "enum": ["table", "json", "yaml"],
+                    "description": "Output format (table, json, or yaml)"
                 },
                 "context": {
                     "type": "string",
